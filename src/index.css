@@ -1,0 +1,244 @@
+:root {
+  --accent: #00c853;
+  --surface: #d1d1d1;
+  --surface-dark: #c2c2c2;
+  --text-light: #ffffff;
+  --text-dark: #000000;
+  --shadow: 0 0 100px rgba(0, 190, 32, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  color: var(--text-dark);
+  background: #fff;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.highlight {
+  background: var(--accent);
+  color: var(--text-light);
+  border-radius: 50%;
+}
+
+.globe-container {
+  position: absolute;
+}
+
+.globe-wrapper {
+  transform: scale(1);
+  transition: transform 2s ease-in-out;
+}
+
+.globe-wrapper.zoom {
+  transform: scale(3);
+}
+
+.globe {
+  width: 500px;
+  animation: spin 20s linear infinite;
+  cursor: pointer;
+}
+
+.text_wherenext {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  width: 350px;
+  transform: translate(-50%, -50%);
+}
+
+.container,
+.container_login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.sub_container_login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 400px;
+  height: 500px;
+  gap: 20px;
+  padding: 20px;
+  background: var(--surface);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.continent-images {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 80vh;
+  width: 100%;
+  gap: 20px;
+}
+
+.continent-image {
+  width: 300px;
+  margin: 0 30px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.continent-image:hover {
+  transform: scale(1.05);
+}
+
+.back-arrow {
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  width: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+input {
+  width: calc(100% - 30px);
+  margin: 15px 0;
+  padding: 10px 12px;
+  font-size: 1rem;
+  color: var(--text-dark);
+  background: var(--surface-dark);
+  border: none;
+  border-radius: 8px;
+}
+
+.button_login_page {
+  width: 100px;
+  height: 35px;
+  margin: 0;
+  cursor: pointer;
+  color: var(--text-light);
+  background: var(--accent);
+  font-size: 17px;
+  border: none;
+  border-radius: 10px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text_wherenext.hide {
+  opacity: 0;
+  transform: translate(-50%, -80%);
+}
+
+.create_trip {
+  width: 400px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.image_spiaggia,
+.image_montagna,
+.image_citta {
+  margin: 20px;
+  border-radius: 15px;
+  border: 2px solid currentColor;
+  cursor: pointer;
+}
+
+.image_spiaggia {
+  width: 300px;
+}
+
+.image_montagna {
+  width: 310px;
+}
+
+.image_citta {
+  width: 275px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .globe {
+    width: 350px;
+  }
+
+  .text_wherenext {
+    width: 280px;
+  }
+
+  .globe-wrapper.zoom {
+    transform: scale(4);
+  }
+
+  .continent-images {
+    flex-direction: column;
+    height: auto;
+    gap: 30px;
+    padding: 20px 0;
+  }
+
+  .continent-image {
+    width: 200px;
+    margin: 0;
+  }
+
+  .container {
+    padding: 20px;
+    min-height: 100vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .globe {
+    width: 220px;
+  }
+
+  .text_wherenext {
+    width: min(90%, 250px);
+  }
+
+  .globe-wrapper.zoom {
+    transform: scale(3);
+  }
+}
+
+@media (max-width: 360px) {
+  .globe {
+    width: 150px;
+  }
+
+  .text_wherenext {
+    width: min(85%, 180px);
+  }
+
+  .globe-wrapper.zoom {
+    transform: scale(2.5);
+  }
+}
