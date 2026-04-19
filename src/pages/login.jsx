@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { supabase } from "../services/supabase";
 import { useNavigate } from "react-router-dom";
+import freccia from "../assets/freccia.png";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export default function Login() {
       <div className="container_login">
         <div className="sub_container_login">
           <img
-            src="/freccia.png"
+            src={freccia}
             alt="Back to Continents"
             className="back-arrow"
             onClick={() => navigate("/")}

@@ -2,6 +2,7 @@ import { useState } from "react";
 import { supabase } from "../../services/supabase";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import citta from "../../assets/citta.jpg";
 
 export default function SpiaggiaAmerica() {
   const [showModal, setShowModal] = useState(false);
@@ -38,7 +39,7 @@ export default function SpiaggiaAmerica() {
       {
         user_id: userData.user.id,
         type: "trip",
-        content: "/citta.jpg",
+        content: { citta },
         visible: true,
       },
     ]);

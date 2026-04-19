@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../services/supabase";
 import { useNavigate } from "react-router-dom";
+import create_trip from "../assets/create_trip.jpg";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -112,7 +113,7 @@ export default function Dashboard() {
         <h2>Add trip :</h2>
         <img
           onClick={() => navigate("/continents")}
-          src="/create_trip.jpg"
+          src={create_trip}
           className="create_trip"
         />
       </div>
