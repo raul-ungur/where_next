@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import world from "../assets/world.png";
+import text from "../assets/text.png";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -21,10 +22,7 @@ export default function Home() {
           <img src={world} className="globe" />
         </div>
 
-        <img
-          src="/text.png"
-          className={`text_wherenext ${zoom ? "hide" : ""}`}
-        />
+        <img src={text} className={`text_wherenext ${zoom ? "hide" : ""}`} />
       </div>
     </div>
   );
