@@ -8,6 +8,9 @@ export default function SpiaggiaAmerica() {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+  const openModalTwo = () => setShowModalTwo(true);
+  const closeModalTwo = () => setShowModalTwo(false);
+  const [showModalTwo, setShowModalTwo] = useState(false);
   const navigate = useNavigate();
   const [widgets, setWidgets] = useState([]);
 
@@ -39,7 +42,7 @@ export default function SpiaggiaAmerica() {
       {
         user_id: userData.user.id,
         type: "trip",
-        content: { citta },
+        content: "../../assets/citta.jpg",
         visible: true,
       },
     ]);
@@ -105,6 +108,38 @@ export default function SpiaggiaAmerica() {
           />
         </div>
       </div>
+      {showModalTwo && (
+        <div className="modal-overlay" onClick={closeModalTwo}>
+          <div
+            className="modal-card"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              onClick={closeModalTwo}
+              aria-label="Chiudi popup"
+            >
+              ×
+            </button>
+            <h2>Benvenuto a Myrtle Beach</h2>
+            <p>funziona</p>
+            <button onClick={handleAddTrip} className="button_modal">
+              add trip
+            </button>
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="button_modal"
+            >
+              view dashboard
+            </button>
+            {widgets.length > 0 && (
+              <button className="button_modal" onClick={handleDeleteAll}>
+                Elimina tutto
+              </button>
+            )}
+          </div>
+        </div>
+      )}
 
       {showModal && (
         <div className="modal-overlay" onClick={closeModal}>

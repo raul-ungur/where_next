@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../services/supabase";
 import { useNavigate } from "react-router-dom";
-import create_trip from "../assets/create_trip.jpg";
 
 export default function Dashboard() {
   const [user, setUser] = useState(null);
@@ -9,9 +8,17 @@ export default function Dashboard() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
+  const [itemsTwo, setItemsTwo] = useState([]);
+  const [itemsThree, setItemsThree] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+  const [showModalTwo, setShowModalTwo] = useState(false);
+  const openModalTwo = () => setShowModalTwo(true);
+  const closeModalTwo = () => setShowModalTwo(false);
+  const [showModalThree, setShowModalThree] = useState(false);
+  const openModalThree = () => setShowModalThree(true);
+  const closeModalThree = () => setShowModalThree(false);
 
   useEffect(() => {
     async function initializeDashboard() {
@@ -37,7 +44,9 @@ export default function Dashboard() {
   }, []);
   useEffect(() => {
     if (user) {
-      getItems(); // 👈 AGGIUNGI QUESTA RIGA
+      getItems();
+      getItemsTwo();
+      getItemsThree();
     }
   }, [user]);
 
@@ -65,7 +74,6 @@ export default function Dashboard() {
       setItems(data);
     }
   }
-
   async function handleDeleteAll() {
     const { data: userData } = await supabase.auth.getUser();
 
@@ -79,6 +87,72 @@ export default function Dashboard() {
     } else {
       setItems([]);
       closeModal();
+    }
+  }
+
+  ///two
+
+  async function getItemsTwo() {
+    const { data: userData } = await supabase.auth.getUser();
+
+    const { data, error } = await supabase
+      .from("widgetstwo")
+      .select("*")
+      .eq("user_id", userData.user.id);
+
+    if (error) {
+      console.error(error.message);
+    } else {
+      setItemsTwo(data);
+    }
+  }
+
+  async function handleDeleteAllTwo() {
+    const { data: userData } = await supabase.auth.getUser();
+
+    const { error } = await supabase
+      .from("widgetstwo")
+      .delete()
+      .eq("user_id", userData.user.id);
+
+    if (error) {
+      console.error("Errore cancellazione:", error);
+    } else {
+      setItemsTwo([]);
+      closeModalTwo();
+    }
+  }
+
+  ////three
+
+  async function getItemsThree() {
+    const { data: userData } = await supabase.auth.getUser();
+
+    const { data, error } = await supabase
+      .from("widgetsthree")
+      .select("*")
+      .eq("user_id", userData.user.id);
+
+    if (error) {
+      console.error(error.message);
+    } else {
+      setItemsThree(data);
+    }
+  }
+
+  async function handleDeleteAllThree() {
+    const { data: userData } = await supabase.auth.getUser();
+
+    const { error } = await supabase
+      .from("widgetsthree")
+      .delete()
+      .eq("user_id", userData.user.id);
+
+    if (error) {
+      console.error("Errore cancellazione:", error);
+    } else {
+      setItemsThree([]);
+      closeModalThree();
     }
   }
 
@@ -107,13 +181,59 @@ export default function Dashboard() {
           )}
         </div>
       ))}
+      {itemsTwo.map((itemsTwo) => (
+        <div
+          key={itemsTwo.id}
+          style={{
+            margin: "10px",
+            padding: "10px",
+          }}
+        >
+          {itemsTwo.type === "trip" && (
+            <div>
+              <img
+                style={{ borderRadius: "15px" }}
+                src={itemsTwo.content}
+                alt="trip"
+                width="200"
+              />
+              <button className="button_info" onClick={openModalTwo}>
+                info
+              </button>
+            </div>
+          )}
+        </div>
+      ))}
+      {itemsThree.map((itemsThree) => (
+        <div
+          key={itemsThree.id}
+          style={{
+            margin: "10px",
+            padding: "10px",
+          }}
+        >
+          {itemsThree.type === "trip" && (
+            <div>
+              <img
+                style={{ borderRadius: "15px" }}
+                src={itemsThree.content}
+                alt="trip"
+                width="200"
+              />
+              <button className="button_info" onClick={openModalThree}>
+                info
+              </button>
+            </div>
+          )}
+        </div>
+      ))}
       <h1 className="title">Benvenuto {username ?? user.email}</h1>
       {message && <div style={{ marginTop: 12, color: "#333" }}>{message}</div>}
       <div>
         <h2>Add trip :</h2>
         <img
           onClick={() => navigate("/continents")}
-          src={create_trip}
+          src="/create_trip.jpg"
           className="create_trip"
         />
       </div>
@@ -139,6 +259,54 @@ export default function Dashboard() {
 
             {items.length > 0 && (
               <button className="button_modal" onClick={handleDeleteAll}>
+                Elimina tutto
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+      {showModalTwo && (
+        <div className="modal-overlay" onClick={closeModalTwo}>
+          <div
+            className="modal-card"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              onClick={closeModalTwo}
+              aria-label="Chiudi popup"
+            >
+              ×
+            </button>
+            <h2>Benvenuto a Myrtle Beach</h2>
+            <p>funziona</p>
+
+            {itemsTwo.length > 0 && (
+              <button className="button_modal" onClick={handleDeleteAllTwo}>
+                Elimina tutto
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+      {showModalThree && (
+        <div className="modal-overlay" onClick={closeModalThree}>
+          <div
+            className="modal-card"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              onClick={closeModalThree}
+              aria-label="Chiudi popup"
+            >
+              ×
+            </button>
+            <h2>Benvenuto a Myrtle Beach</h2>
+            <p>funziona anche il 3</p>
+
+            {itemsThree.length > 0 && (
+              <button className="button_modal" onClick={handleDeleteAllThree}>
                 Elimina tutto
               </button>
             )}
