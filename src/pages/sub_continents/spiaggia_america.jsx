@@ -8,11 +8,16 @@ export default function SpiaggiaAmerica() {
   const [showModal, setShowModal] = useState(false);
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+  const [showModalTwo, setShowModalTwo] = useState(false);
   const openModalTwo = () => setShowModalTwo(true);
   const closeModalTwo = () => setShowModalTwo(false);
-  const [showModalTwo, setShowModalTwo] = useState(false);
+  const [showModalThree, setShowModalThree] = useState(false);
+  const openModalThree = () => setShowModalThree(true);
+  const closeModalThree = () => setShowModalThree(false);
   const navigate = useNavigate();
   const [widgets, setWidgets] = useState([]);
+  const [widgetstwo, setWidgetsTwo] = useState([]);
+  const [widgetsthree, setWidgetsThree] = useState([]);
 
   async function handleAddTrip() {
     const { data: userData, error: userError } = await supabase.auth.getUser();
@@ -42,7 +47,7 @@ export default function SpiaggiaAmerica() {
       {
         user_id: userData.user.id,
         type: "trip",
-        content: "../../assets/citta.jpg",
+        content: "/citta.jpg",
         visible: true,
       },
     ]);
@@ -83,6 +88,148 @@ export default function SpiaggiaAmerica() {
     }
   }
 
+  /////two
+
+  async function handleAddTripTwo() {
+    const { data: userData, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !userData?.user) {
+      console.error("Utente non autenticato");
+      return;
+    }
+
+    const { data: existing, error: checkError } = await supabase
+      .from("widgetstwo")
+      .select("*")
+      .eq("user_id", userData.user.id)
+      .eq("type", "trip");
+
+    if (checkError) {
+      console.error("Errore controllo:", checkError);
+      return;
+    }
+
+    if (existing.length > 0) {
+      alert("Hai già aggiunto questo viaggio!");
+      return;
+    }
+
+    const { error } = await supabase.from("widgetstwo").insert([
+      {
+        user_id: userData.user.id,
+        type: "trip",
+        content: "/montagna.jpg",
+        visible: true,
+      },
+    ]);
+
+    if (error) {
+      console.error(error);
+    } else {
+      alert("Aggiunto!");
+    }
+  }
+
+  useEffect(() => {
+    async function fetchWidgetsTwo() {
+      const { data, error } = await supabase.from("widgetstwo").select("*");
+
+      if (error) {
+        console.error("Errore fetch:", error);
+      } else {
+        setWidgetsTwo(data);
+      }
+    }
+
+    fetchWidgetsTwo();
+  }, []);
+
+  async function handleDeleteAllTwo() {
+    const { data: userData } = await supabase.auth.getUser();
+
+    const { error } = await supabase
+      .from("widgetstwo")
+      .delete()
+      .eq("user_id", userData.user.id);
+
+    if (error) {
+      console.error("Errore cancellazione:", error);
+    } else {
+      setWidgetsTwo([]);
+    }
+  }
+
+  /////three
+
+  async function handleAddTripThree() {
+    const { data: userData, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !userData?.user) {
+      console.error("Utente non autenticato");
+      return;
+    }
+
+    const { data: existing, error: checkError } = await supabase
+      .from("widgetsthree")
+      .select("*")
+      .eq("user_id", userData.user.id)
+      .eq("type", "trip");
+
+    if (checkError) {
+      console.error("Errore controllo:", checkError);
+      return;
+    }
+
+    if (existing.length > 0) {
+      alert("Hai già aggiunto questo viaggio!");
+      return;
+    }
+
+    const { error } = await supabase.from("widgetsthree").insert([
+      {
+        user_id: userData.user.id,
+        type: "trip",
+        content: "/spiaggia.png",
+        visible: true,
+      },
+    ]);
+
+    if (error) {
+      console.error(error);
+    } else {
+      alert("Aggiunto!");
+    }
+  }
+
+  useEffect(() => {
+    async function fetchWidgetsThree() {
+      const { data, error } = await supabase.from("widgetsthree").select("*");
+
+      if (error) {
+        console.error("Errore fetch:", error);
+      } else {
+        setWidgetsThree(data);
+      }
+    }
+
+    fetchWidgetsThree();
+  }, []);
+
+  async function handleDeleteAllThree() {
+    const { data: userData } = await supabase.auth.getUser();
+
+    const { error } = await supabase
+      .from("widgetsthree")
+      .delete()
+      .eq("user_id", userData.user.id);
+
+    if (error) {
+      console.error("Errore cancellazione:", error);
+    } else {
+      setWidgetsThree([]);
+    }
+  }
+
   return (
     <div className="container">
       <div className="spiaggia-content">
@@ -98,13 +245,13 @@ export default function SpiaggiaAmerica() {
             src="./myrtle.jpg"
             alt="Myrtle Beach"
             className="myrtle_img"
-            onClick={openModal}
+            onClick={openModalTwo}
           />
           <img
             src="./myrtle.jpg"
             alt="Myrtle Beach"
             className="myrtle_img"
-            onClick={openModal}
+            onClick={openModalThree}
           />
         </div>
       </div>
@@ -123,7 +270,7 @@ export default function SpiaggiaAmerica() {
             </button>
             <h2>Benvenuto a Myrtle Beach</h2>
             <p>funziona</p>
-            <button onClick={handleAddTrip} className="button_modal">
+            <button onClick={handleAddTripTwo} className="button_modal">
               add trip
             </button>
             <button
@@ -132,8 +279,8 @@ export default function SpiaggiaAmerica() {
             >
               view dashboard
             </button>
-            {widgets.length > 0 && (
-              <button className="button_modal" onClick={handleDeleteAll}>
+            {widgetstwo.length > 0 && (
+              <button className="button_modal" onClick={handleDeleteAllTwo}>
                 Elimina tutto
               </button>
             )}
@@ -171,6 +318,39 @@ export default function SpiaggiaAmerica() {
             </button>
             {widgets.length > 0 && (
               <button className="button_modal" onClick={handleDeleteAll}>
+                Elimina tutto
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
+      {showModalThree && (
+        <div className="modal-overlay" onClick={closeModalThree}>
+          <div
+            className="modal-card"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              className="modal-close"
+              onClick={closeModalThree}
+              aria-label="Chiudi popup"
+            >
+              ×
+            </button>
+            <h2>Benvenuto a Myrtle Beach</h2>
+            <p>funziona il tre</p>
+            <button onClick={handleAddTripThree} className="button_modal">
+              add trip
+            </button>
+            <button
+              onClick={() => navigate("/dashboard")}
+              className="button_modal"
+            >
+              view dashboard
+            </button>
+            {widgetsthree.length > 0 && (
+              <button className="button_modal" onClick={handleDeleteAllThree}>
                 Elimina tutto
               </button>
             )}
