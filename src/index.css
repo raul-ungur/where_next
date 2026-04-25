@@ -20,9 +20,18 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+header {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  color: #00c853;
+  padding: 10px 30px; /* 👈 invece di height */
+}
+
 body {
   color: var(--text-dark);
-  background: #fff;
 }
 
 img,
@@ -72,6 +81,7 @@ svg {
   align-items: center;
   width: 100%;
   min-height: 100vh;
+  background-color: #ffffff;
 }
 
 .sub_container_login {
@@ -173,6 +183,22 @@ input {
 
 .image_citta {
   width: 275px;
+}
+
+.scroll_container {
+  display: flex;
+  overflow-x: auto;
+  width: 700px;
+  height: 500px;
+  background-color: #e7e7e7;
+  padding: 10px;
+  scroll-snap-type: x mandatory; /* effetto più figo */
+  border-radius: 20px;
+}
+.card {
+  flex: 0 0 auto;
+  width: 300px;
+  height: 300px;
 }
 
 @keyframes spin {

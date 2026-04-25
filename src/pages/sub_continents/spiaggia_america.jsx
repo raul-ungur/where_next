@@ -2,7 +2,10 @@ import { useState } from "react";
 import { supabase } from "../../services/supabase";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
-import citta from "../../assets/citta.jpg";
+import freccia from "../../assets/freccia.png";
+import myrtle from "../../../public/myrtle.jpg";
+import miami from "../../../public/miami_beach.jpg";
+import sanfrancisco from "../../../public/sanfrancisco_beach.jpg";
 
 export default function SpiaggiaAmerica() {
   const [showModal, setShowModal] = useState(false);
@@ -47,7 +50,7 @@ export default function SpiaggiaAmerica() {
       {
         user_id: userData.user.id,
         type: "trip",
-        content: "/citta.jpg",
+        content: "../assets/citta.jpg",
         visible: true,
       },
     ]);
@@ -233,23 +236,29 @@ export default function SpiaggiaAmerica() {
   return (
     <div className="container">
       <div className="spiaggia-content">
+        <img
+          src={freccia}
+          alt="Back to Home"
+          className="back-arrow"
+          onClick={() => navigate("/dashboard")}
+        />
         <h1>Spiaggia America</h1>
         <div className="spiaggia-images">
           <img
-            src="./myrtle.jpg"
+            src={myrtle}
             alt="Myrtle Beach"
             className="myrtle_img"
             onClick={openModal}
           />
           <img
-            src="./myrtle.jpg"
-            alt="Myrtle Beach"
+            src={miami}
+            alt="Miami Beach"
             className="myrtle_img"
             onClick={openModalTwo}
           />
           <img
-            src="./myrtle.jpg"
-            alt="Myrtle Beach"
+            src={sanfrancisco}
+            alt="San Francisco Beach"
             className="myrtle_img"
             onClick={openModalThree}
           />

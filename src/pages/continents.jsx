@@ -1,4 +1,8 @@
 import { useNavigate } from "react-router-dom";
+import freccia from "../assets/freccia.png";
+import america from "../assets/america.png";
+import europe from "../assets/europa.png";
+import asia from "../assets/asia.png";
 
 export default function Continents() {
   const navigate = useNavigate();
@@ -6,26 +10,26 @@ export default function Continents() {
   return (
     <div className="container">
       <img
-        src="/freccia.png"
+        src={freccia}
         alt="Back to Home"
         className="back-arrow"
         onClick={() => navigate("/dashboard")}
       />
       <div className="continent-images">
         <img
-          src="/america.png"
+          src={america}
           alt="America"
           className="continent-image"
           onClick={() => navigate("/america")}
         />
         <img
-          src="/europa.png"
+          src={europe}
           alt="Europe"
           className="continent-image"
           onClick={() => navigate("/europe")}
         />
         <img
-          src="/asia.png"
+          src={asia}
           alt="Asia"
           className="continent-image"
           onClick={() => navigate("/asia")}
