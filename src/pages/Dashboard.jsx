@@ -637,7 +637,7 @@ export default function Dashboard() {
         {message && (
           <div style={{ marginTop: 12, color: "#333" }}>{message}</div>
         )}
-        <div>
+        <div className="add_trip_container">
           <h2>Add trip :</h2>
           <img
             onClick={() => navigate("/continents")}

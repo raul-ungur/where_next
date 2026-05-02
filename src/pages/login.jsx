@@ -36,7 +36,7 @@ export default function Login() {
     if (error) {
       alert(error.message);
     } else {
-      alert("Account created!");
+      alert("account created!");
       navigate("/dashboard");
     }
   }

@@ -279,6 +279,9 @@ input {
   .image_citta {
     width: 200px;
   }
+  .add_trip_container {
+    margin-top: 25px;
+  }
 }
 
 @media (max-width: 480px) {
