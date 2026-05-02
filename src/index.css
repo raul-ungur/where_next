@@ -1,10 +1,10 @@
 :root {
-  --accent: #00c853;
+  --accent: #a0da45;
   --surface: #d1d1d1;
   --surface-dark: #c2c2c2;
   --text-light: #ffffff;
   --text-dark: #000000;
-  --shadow: 0 0 100px rgba(0, 190, 32, 0.5);
+  --shadow: 0 0 100px rgb(160, 218, 69);
 }
 
 * {
@@ -26,7 +26,7 @@ header {
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
-  color: #00c853;
+  color: #a0da45;
   padding: 10px 30px; /* 👈 invece di height */
 }
 
@@ -123,6 +123,15 @@ svg {
   top: 30px;
   left: 20px;
   width: 40px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.status {
+  position: absolute;
+  top: 30px;
+  left: 400px;
+  width: 700px;
   cursor: pointer;
   z-index: 10;
 }
@@ -238,6 +247,37 @@ input {
   .container {
     padding: 20px;
     min-height: 100vh;
+    flex-direction: column;
+  }
+  .scroll_container {
+    width: 100%;
+    height: 400px;
+    margin-top: 100px;
+  }
+  .card {
+    width: 250px;
+    height: 250px;
+  }
+  .image_spiaggia,
+  .image_montagna,
+  .image_citta {
+    margin: 20px;
+    border-radius: 15px;
+    border: 2px solid currentColor;
+    cursor: pointer;
+  }
+
+  .image_spiaggia {
+    width: 200px;
+    margin-top: 50px;
+  }
+
+  .image_montagna {
+    width: 210px;
+  }
+
+  .image_citta {
+    width: 200px;
   }
 }
 

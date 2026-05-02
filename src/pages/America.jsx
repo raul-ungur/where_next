@@ -3,6 +3,7 @@ import freccia from "../assets/freccia.png";
 import spiaggia from "../../public/spiaggia.png";
 import montagna from "../../public/montagna.jpg";
 import citta from "../assets/citta.jpg";
+import sixtysix from "../../public/sixtysix.png";
 
 export default function America() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function America() {
         className="back-arrow"
         onClick={() => navigate("/continents")}
       />
+      <img src={sixtysix} alt="" className="status" />
 
       <img
         src={spiaggia}

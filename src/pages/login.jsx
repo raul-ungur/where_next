@@ -36,7 +36,7 @@ export default function Login() {
     if (error) {
       alert(error.message);
     } else {
-      alert("Account creato!");
+      alert("Account created!");
       navigate("/dashboard");
     }
   }
@@ -72,7 +72,7 @@ export default function Login() {
           />
 
           <button
-            style={{ backgroundColor: "#0ae61c" }}
+            style={{ backgroundColor: "rgb(160, 218, 69)" }}
             className="button_login_page"
             onClick={handleLogin}
           >
@@ -83,7 +83,7 @@ export default function Login() {
             className="button_login_page"
             onClick={handleRegister}
           >
-            Registrati
+            Register
           </button>
         </div>
       </div>

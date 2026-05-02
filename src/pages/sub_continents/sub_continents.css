@@ -1,8 +1,3 @@
-.title {
-  font-size: 2.5rem;
-  color: #0ac040;
-  margin-top: -600px;
-}
 h2 {
   margin-bottom: -20px;
   margin-left: 100px;
@@ -73,7 +68,7 @@ h2 {
 .modal-card {
   position: relative;
   width: 800px;
-  height: 300px;
+  height: 400px;
   background: #ffffff;
   border-radius: 24px;
   padding: 32px 28px;
@@ -85,13 +80,18 @@ h2 {
 .modal-card h2 {
   margin: 0 0 18px;
   font-size: 2rem;
-  color: #0b4e75;
+  color: #a0da45;
 }
 
 .modal-card p {
   margin: 0;
   line-height: 1.7;
   color: #424242;
+}
+.hundred {
+  width: 550px;
+  margin-left: 100px;
+  margin-bottom: 20px;
 }
 
 .modal-close {
@@ -119,5 +119,22 @@ h2 {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+@media (max-width: 768px) {
+  .status {
+    left: 70px;
+    width: calc(90% - 40px);
+    height: 25px;
+  }
+  .hundred {
+    width: 80%;
+    margin-left: 0%;
+    margin-top: 20px;
+  }
+  .modal-card {
+    padding: 10px;
+
+    height: auto;
   }
 }

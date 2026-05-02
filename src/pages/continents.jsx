@@ -3,6 +3,7 @@ import freccia from "../assets/freccia.png";
 import america from "../assets/america.png";
 import europe from "../assets/europa.png";
 import asia from "../assets/asia.png";
+import thirtythree from "../../public/thirtythree.png";
 
 export default function Continents() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ export default function Continents() {
         className="back-arrow"
         onClick={() => navigate("/dashboard")}
       />
+      <img src={thirtythree} alt="" className="status" />
       <div className="continent-images">
         <img
           src={america}

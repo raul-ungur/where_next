@@ -6,6 +6,8 @@ import freccia from "../../assets/freccia.png";
 import myrtle from "../../../public/myrtle.jpg";
 import miami from "../../../public/miami_beach.jpg";
 import sanfrancisco from "../../../public/sanfrancisco_beach.jpg";
+import ninetynine from "../../../public/ninetynine.png";
+import hundred from "../../../public/hundred.png";
 
 export default function SpiaggiaAmerica() {
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +28,7 @@ export default function SpiaggiaAmerica() {
     const { data: userData, error: userError } = await supabase.auth.getUser();
 
     if (userError || !userData?.user) {
-      console.error("Utente non autenticato");
+      console.error("unauthenticated user");
       return;
     }
 
@@ -37,12 +39,12 @@ export default function SpiaggiaAmerica() {
       .eq("type", "trip");
 
     if (checkError) {
-      console.error("Errore controllo:", checkError);
+      console.error("Error checking:", checkError);
       return;
     }
 
     if (existing.length > 0) {
-      alert("Hai già aggiunto questo viaggio!");
+      alert("You have already added this trip!");
       return;
     }
 
@@ -58,7 +60,7 @@ export default function SpiaggiaAmerica() {
     if (error) {
       console.error(error);
     } else {
-      alert("Aggiunto!");
+      alert("Added!");
     }
   }
 
@@ -67,7 +69,7 @@ export default function SpiaggiaAmerica() {
       const { data, error } = await supabase.from("widgets").select("*");
 
       if (error) {
-        console.error("Errore fetch:", error);
+        console.error("Error fetching:", error);
       } else {
         setWidgets(data);
       }
@@ -85,7 +87,7 @@ export default function SpiaggiaAmerica() {
       .eq("user_id", userData.user.id);
 
     if (error) {
-      console.error("Errore cancellazione:", error);
+      console.error("Error deleting:", error);
     } else {
       setWidgets([]);
     }
@@ -97,7 +99,7 @@ export default function SpiaggiaAmerica() {
     const { data: userData, error: userError } = await supabase.auth.getUser();
 
     if (userError || !userData?.user) {
-      console.error("Utente non autenticato");
+      console.error("unauthenticated user");
       return;
     }
 
@@ -108,12 +110,12 @@ export default function SpiaggiaAmerica() {
       .eq("type", "trip");
 
     if (checkError) {
-      console.error("Errore controllo:", checkError);
+      console.error("Error checking:", checkError);
       return;
     }
 
     if (existing.length > 0) {
-      alert("Hai già aggiunto questo viaggio!");
+      alert("You have already added this trip!");
       return;
     }
 
@@ -129,7 +131,7 @@ export default function SpiaggiaAmerica() {
     if (error) {
       console.error(error);
     } else {
-      alert("Aggiunto!");
+      alert("Added!");
     }
   }
 
@@ -138,7 +140,7 @@ export default function SpiaggiaAmerica() {
       const { data, error } = await supabase.from("widgetstwo").select("*");
 
       if (error) {
-        console.error("Errore fetch:", error);
+        console.error("Error fetching:", error);
       } else {
         setWidgetsTwo(data);
       }
@@ -156,7 +158,7 @@ export default function SpiaggiaAmerica() {
       .eq("user_id", userData.user.id);
 
     if (error) {
-      console.error("Errore cancellazione:", error);
+      console.error("Error deleting:", error);
     } else {
       setWidgetsTwo([]);
     }
@@ -168,7 +170,7 @@ export default function SpiaggiaAmerica() {
     const { data: userData, error: userError } = await supabase.auth.getUser();
 
     if (userError || !userData?.user) {
-      console.error("Utente non autenticato");
+      console.error("unauthenticated user");
       return;
     }
 
@@ -179,12 +181,12 @@ export default function SpiaggiaAmerica() {
       .eq("type", "trip");
 
     if (checkError) {
-      console.error("Errore controllo:", checkError);
+      console.error("Error checking:", checkError);
       return;
     }
 
     if (existing.length > 0) {
-      alert("Hai già aggiunto questo viaggio!");
+      alert("You have already added this trip!");
       return;
     }
 
@@ -200,7 +202,7 @@ export default function SpiaggiaAmerica() {
     if (error) {
       console.error(error);
     } else {
-      alert("Aggiunto!");
+      alert("Added!");
     }
   }
 
@@ -209,7 +211,7 @@ export default function SpiaggiaAmerica() {
       const { data, error } = await supabase.from("widgetsthree").select("*");
 
       if (error) {
-        console.error("Errore fetch:", error);
+        console.error("Error fetching:", error);
       } else {
         setWidgetsThree(data);
       }
@@ -227,7 +229,7 @@ export default function SpiaggiaAmerica() {
       .eq("user_id", userData.user.id);
 
     if (error) {
-      console.error("Errore cancellazione:", error);
+      console.error("Error deleting:", error);
     } else {
       setWidgetsThree([]);
     }
@@ -240,9 +242,10 @@ export default function SpiaggiaAmerica() {
           src={freccia}
           alt="Back to Home"
           className="back-arrow"
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/america")}
         />
-        <h1>Spiaggia America</h1>
+        <img src={ninetynine} alt="" className="status" />
+
         <div className="spiaggia-images">
           <img
             src={myrtle}
@@ -277,8 +280,14 @@ export default function SpiaggiaAmerica() {
             >
               ×
             </button>
-            <h2>Benvenuto a Myrtle Beach</h2>
-            <p>funziona</p>
+            <img src={hundred} alt="" className="hundred" />
+            <h2>Miami Beach</h2>
+            <p>
+              Miami Beach is a famous stretch of coastline along the Atlantic
+              Ocean known for its soft white sand, clear turquoise water, and
+              vibrant atmosphere. The beach is typically warm year-round, making
+              it ideal for swimming, sunbathing, and water sports.
+            </p>
             <button onClick={handleAddTripTwo} className="button_modal">
               add trip
             </button>
@@ -290,7 +299,7 @@ export default function SpiaggiaAmerica() {
             </button>
             {widgetstwo.length > 0 && (
               <button className="button_modal" onClick={handleDeleteAllTwo}>
-                Elimina tutto
+                delete
               </button>
             )}
           </div>
@@ -310,11 +319,14 @@ export default function SpiaggiaAmerica() {
             >
               ×
             </button>
-            <h2>Benvenuto a Myrtle Beach</h2>
+            <img src={hundred} alt="" className="hundred" />
+            <h2> Myrtle Beach</h2>
             <p>
-              Scopri il fascino di questa spiaggia dorata: onde delicate, brezza
-              marina e un momento di relax perfetto per ricaricare l'anima.
-              Clicca fuori dal popup o sulla X per chiudere.
+              Myrtle Beach is a popular coastal destination along the Atlantic
+              Ocean, known for its wide sandy shoreline and lively atmosphere.
+              The beach stretches for about 60 miles (often called the “Grand
+              Strand”), offering soft sand, gentle waves, and plenty of space
+              for swimming, sunbathing, and family activities.
             </p>
             <button onClick={handleAddTrip} className="button_modal">
               add trip
@@ -327,7 +339,7 @@ export default function SpiaggiaAmerica() {
             </button>
             {widgets.length > 0 && (
               <button className="button_modal" onClick={handleDeleteAll}>
-                Elimina tutto
+                delete
               </button>
             )}
           </div>
@@ -347,8 +359,19 @@ export default function SpiaggiaAmerica() {
             >
               ×
             </button>
-            <h2>Benvenuto a Myrtle Beach</h2>
-            <p>funziona il tre</p>
+            <img src={hundred} alt="" className="hundred" />
+            <h2> San Francisco Beach</h2>
+            <p>
+              Ocean Beach is a long, windswept stretch of coastline along the
+              Pacific Ocean. Unlike warmer beach destinations, it’s known for
+              its cool temperatures, strong waves, and frequent fog. The beach
+              has wide sandy shores and dramatic views, especially near
+              landmarks like the Golden Gate Bridge. It’s popular for walking,
+              surfing, and enjoying sunsets, but the water is usually too cold
+              and rough for casual swimming. Overall, it offers a more rugged,
+              scenic, and peaceful coastal experience compared to typical sunny
+              beaches.
+            </p>
             <button onClick={handleAddTripThree} className="button_modal">
               add trip
             </button>
@@ -360,7 +383,7 @@ export default function SpiaggiaAmerica() {
             </button>
             {widgetsthree.length > 0 && (
               <button className="button_modal" onClick={handleDeleteAllThree}>
-                Elimina tutto
+                delete
               </button>
             )}
           </div>

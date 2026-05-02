@@ -6,6 +6,8 @@ import appalachi from "../../../public/appalachian_mountains.jpg";
 import rushmore from "../../../public/mount_rushmore.jpg";
 import sierra from "../../../public/sierra_nevada.jpg";
 import freccia from "../../assets/freccia.png";
+import ninetynine from "../../../public/ninetynine.png";
+import hundred from "../../../public/hundred.png";
 
 export default function MontagnaAmerica() {
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +28,7 @@ export default function MontagnaAmerica() {
     const { data: userData, error: userError } = await supabase.auth.getUser();
 
     if (userError || !userData?.user) {
-      console.error("Utente non autenticato");
+      console.error("unauthenticated user");
       return;
     }
 
@@ -37,12 +39,12 @@ export default function MontagnaAmerica() {
       .eq("type", "trip");
 
     if (checkError) {
-      console.error("Errore controllo:", checkError);
+      console.error("Error checking:", checkError);
       return;
     }
 
     if (existing.length > 0) {
-      alert("Hai già aggiunto questo viaggio!");
+      alert("You have already added this trip!");
       return;
     }
 
@@ -58,7 +60,7 @@ export default function MontagnaAmerica() {
     if (error) {
       console.error(error);
     } else {
-      alert("Aggiunto!");
+      alert("Added!");
     }
   }
 
@@ -69,7 +71,7 @@ export default function MontagnaAmerica() {
         .select("*");
 
       if (error) {
-        console.error("Errore fetch:", error);
+        console.error("Error fetching:", error);
       } else {
         setWidgets(data);
       }
@@ -87,7 +89,7 @@ export default function MontagnaAmerica() {
       .eq("user_id", userData.user.id);
 
     if (error) {
-      console.error("Errore cancellazione:", error);
+      console.error("Error deleting:", error);
     } else {
       setWidgets([]);
     }
@@ -99,7 +101,7 @@ export default function MontagnaAmerica() {
     const { data: userData, error: userError } = await supabase.auth.getUser();
 
     if (userError || !userData?.user) {
-      console.error("Utente non autenticato");
+      console.error("unauthenticated user");
       return;
     }
 
@@ -110,12 +112,12 @@ export default function MontagnaAmerica() {
       .eq("type", "trip");
 
     if (checkError) {
-      console.error("Errore controllo:", checkError);
+      console.error("Error checking:", checkError);
       return;
     }
 
     if (existing.length > 0) {
-      alert("Hai già aggiunto questo viaggio!");
+      alert("You have already added this trip!");
       return;
     }
 
@@ -131,7 +133,7 @@ export default function MontagnaAmerica() {
     if (error) {
       console.error(error);
     } else {
-      alert("Aggiunto!");
+      alert("Added!");
     }
   }
 
@@ -142,7 +144,7 @@ export default function MontagnaAmerica() {
         .select("*");
 
       if (error) {
-        console.error("Errore fetch:", error);
+        console.error("Error fetching:", error);
       } else {
         setWidgetsTwo(data);
       }
@@ -160,7 +162,7 @@ export default function MontagnaAmerica() {
       .eq("user_id", userData.user.id);
 
     if (error) {
-      console.error("Errore cancellazione:", error);
+      console.error("Error deleting:", error);
     } else {
       setWidgetsTwo([]);
     }
@@ -172,7 +174,7 @@ export default function MontagnaAmerica() {
     const { data: userData, error: userError } = await supabase.auth.getUser();
 
     if (userError || !userData?.user) {
-      console.error("Utente non autenticato");
+      console.error("unauthenticated user");
       return;
     }
 
@@ -183,12 +185,12 @@ export default function MontagnaAmerica() {
       .eq("type", "trip");
 
     if (checkError) {
-      console.error("Errore controllo:", checkError);
+      console.error("Error checking:", checkError);
       return;
     }
 
     if (existing.length > 0) {
-      alert("Hai già aggiunto questo viaggio!");
+      alert("You have already added this trip!");
       return;
     }
 
@@ -204,7 +206,7 @@ export default function MontagnaAmerica() {
     if (error) {
       console.error(error);
     } else {
-      alert("Aggiunto!");
+      alert("Added!");
     }
   }
 
@@ -215,7 +217,7 @@ export default function MontagnaAmerica() {
         .select("*");
 
       if (error) {
-        console.error("Errore fetch:", error);
+        console.error("Error fetching:", error);
       } else {
         setWidgetsThree(data);
       }
@@ -233,7 +235,7 @@ export default function MontagnaAmerica() {
       .eq("user_id", userData.user.id);
 
     if (error) {
-      console.error("Errore cancellazione:", error);
+      console.error("Error deleting:", error);
     } else {
       setWidgetsThree([]);
     }
@@ -246,9 +248,10 @@ export default function MontagnaAmerica() {
           src={freccia}
           alt="Back to Home"
           className="back-arrow"
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/america")}
         />
-        <h1>Montagna America</h1>
+        <img src={ninetynine} alt="" className="status" />
+
         <div className="spiaggia-images">
           <img
             src={appalachi}
@@ -283,8 +286,14 @@ export default function MontagnaAmerica() {
             >
               ×
             </button>
-            <h2>Benvenuto a Myrtle Beach</h2>
-            <p>funziona</p>
+            <img src={hundred} alt="" className="hundred" />
+            <h2>Mount Rushmore</h2>
+            <p>
+              Mount Rushmore is a famous national monument carved into a granite
+              mountain in the Black Hills. It features the large stone faces of
+              four U.S. presidents—George Washington, Thomas Jefferson, Theodore
+              Roosevelt, and Abraham Lincoln.
+            </p>
             <button onClick={handleAddTripTwo} className="button_modal">
               add trip
             </button>
@@ -296,7 +305,7 @@ export default function MontagnaAmerica() {
             </button>
             {widgetstwo.length > 0 && (
               <button className="button_modal" onClick={handleDeleteAllTwo}>
-                Elimina tutto
+                delete
               </button>
             )}
           </div>
@@ -316,11 +325,13 @@ export default function MontagnaAmerica() {
             >
               ×
             </button>
-            <h2>Benvenuto a Myrtle Beach</h2>
+            <img src={hundred} alt="" className="hundred" />
+            <h2>Appalachian Mountains</h2>
             <p>
-              Scopri il fascino di questa spiaggia dorata: onde delicate, brezza
-              marina e un momento di relax perfetto per ricaricare l'anima.
-              Clicca fuori dal popup o sulla X per chiudere.
+              The Appalachian Mountains are a vast mountain range stretching
+              along the eastern United States and into Canada. They are among
+              the oldest mountains in the world, known for their rounded peaks,
+              dense forests, and rich biodiversity.
             </p>
             <button onClick={handleAddTrip} className="button_modal">
               add trip
@@ -333,7 +344,7 @@ export default function MontagnaAmerica() {
             </button>
             {widgets.length > 0 && (
               <button className="button_modal" onClick={handleDeleteAll}>
-                Elimina tutto
+                delete
               </button>
             )}
           </div>
@@ -353,8 +364,17 @@ export default function MontagnaAmerica() {
             >
               ×
             </button>
-            <h2>Benvenuto a Myrtle Beach</h2>
-            <p>funziona il tre</p>
+            <img src={hundred} alt="" className="hundred" />
+            <h2>Sierra Nevada</h2>
+            <p>
+              The Sierra Nevada is a major mountain range in the western United
+              States, mainly in California and partly in Nevada. It’s known for
+              its dramatic peaks, alpine lakes, and vast forests. The range
+              includes famous natural landmarks like Yosemite National Park and
+              Lake Tahoe, as well as Mount Whitney, the tallest mountain in the
+              contiguous U.S. Overall, the Sierra Nevada is known for its
+              stunning scenery, outdoor recreation, and ecological importance.
+            </p>
             <button onClick={handleAddTripThree} className="button_modal">
               add trip
             </button>
@@ -366,7 +386,7 @@ export default function MontagnaAmerica() {
             </button>
             {widgetsthree.length > 0 && (
               <button className="button_modal" onClick={handleDeleteAllThree}>
-                Elimina tutto
+                delete
               </button>
             )}
           </div>
